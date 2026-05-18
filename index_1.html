@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Table Output</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #222;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      margin-bottom: 40px;
+    }
+
+    th {
+      background: #e0e0e0;
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+    }
+
+    td {
+      padding: 8px 14px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h2>Table 1</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Index #</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody id="table1-body"></tbody>
+    </table>
+
+    <h2>Table 2</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody id="table2-body"></tbody>
+    </table>
+
+  </div>
+
+  <script>
+    const data = [
+      { index: "A1",  value: 41 },
+      { index: "A2",  value: 18 },
+      { index: "A3",  value: 21 },
+      { index: "A4",  value: 63 },
+      { index: "A5",  value: 2  },
+      { index: "A6",  value: 53 },
+      { index: "A7",  value: 5  },
+      { index: "A8",  value: 57 },
+      { index: "A9",  value: 60 },
+      { index: "A10", value: 93 },
+      { index: "A11", value: 28 },
+      { index: "A12", value: 3  },
+      { index: "A13", value: 90 },
+      { index: "A14", value: 39 },
+      { index: "A15", value: 80 },
+      { index: "A16", value: 88 },
+      { index: "A17", value: 49 },
+      { index: "A18", value: 60 },
+      { index: "A19", value: 26 },
+      { index: "A20", value: 28 },
+    ];
+
+    const get = (idx) => data.find(d => d.index === idx).value;
+
+    // Table 1
+    const t1 = document.getElementById('table1-body');
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${row.index}</td><td>${row.value}</td>`;
+      t1.appendChild(tr);
+    });
+
+    // Table 2
+    const alpha   = get('A5') + get('A20');
+    const beta    = Math.floor(get('A15') / get('A7'));
+    const charlie = get('A13') * get('A12');
+
+    const t2 = document.getElementById('table2-body');
+    [
+      { category: 'Alpha',   value: alpha },
+      { category: 'Beta',    value: beta },
+      { category: 'Charlie', value: charlie },
+    ].forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${row.category}</td><td>${row.value}</td>`;
+      t2.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
